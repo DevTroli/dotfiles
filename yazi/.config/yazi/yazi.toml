@@ -1,0 +1,18 @@
+schema = "https://yazi-rs.github.io/schemas/yazi.json"
+
+[manager]
+layout = [2, 3, 4]
+sort_by = "alphabetical"
+sort_sensitive = false
+sort_dir_first = true
+show_hidden = false
+show_symlink = true
+linemode = "size:mtime"
+scrolloff = 8
+
+[preview]
+tab_size = 2
+max_width = 3000
+max_height = 3000
+cache_dir = ""
+text_wrap = true

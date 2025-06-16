@@ -1,0 +1,29 @@
+configuration {
+    modi: "drun,run,window,emoji,ssh,combi";
+    show-icons: true;
+    icon-theme: "Oranchelo";
+    drun-display-format: "{icon} {name}";
+    terminal: "ghostty";
+    sidebar-mode: true;
+    location: 0;
+    hide-scrollbar: true;
+
+    disable-history: false;
+    display-drun:      "⚡ Apps ";
+    display-run:       " 🏃  Run ";
+    display-window:    "   Windows ";
+    display-emoji:     " 😀  Emojis ";
+    display-ssh:       "   SSH";
+    display-combi:     "   All ";
+
+    emoji-display-format: "{emoji} {name}";
+    
+    ssh-client: "ssh";
+    ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";
+    parse-hosts: true;
+    parse-known-hosts: true;
+}
+
+
+
+@theme "catppuccin-mocha"
