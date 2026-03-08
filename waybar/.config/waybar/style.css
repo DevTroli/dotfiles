@@ -73,3 +73,17 @@ tooltip label {
     margin-left: 10px;
     color: @text;
 }
+
+#custom-discord {
+  color: #5865F2;
+  padding: 0 8px;
+}
+
+#bluetooth {
+  color: #89dceb;
+  padding: 0 8px;
+}
+
+#bluetooth.off {
+  color: #6c7086;
+}

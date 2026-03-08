@@ -1,59 +1,66 @@
 {
+  "layer": "top",
   "position": "top",
+  "margin-top": 6,
+  "margin-left": 10,
+  "margin-right": 10,
+  "spacing": 2,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["hyprland/window"],
-  "modules-right": ["network", "pulseaudio","keyboard", "battery", "clock"],
+  "modules-right": ["custom/discord", "bluetooth", "network", "pulseaudio", "battery", "clock" ],
+
+  "hyprland/window": {
+    "format": "{}",
+    "separate-outputs": true
+  },
+
   "clock": {
-    "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
+    "format": "<span foreground='#f5c2e7'> </span> {:%a %d %H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "on-click": "hyprctl dispatch exec 'calcurse'"
   },
-  "battery": {
-    "states": {
-      "warning": 30,
-      "critical": 15
-    },
-    "format": "<span size='13000' foreground='#a6e3a1'>{icon} </span> {capacity}%",
-    "format-warning": "<span size='13000' foreground='#B1E3AD'>{icon} </span> {capacity}%",
-    "format-critical": "<span size='13000' foreground='#E38C8F'>{icon} </span> {capacity}%",
-    "format-charging": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
-    "format-plugged": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
-    "format-alt": "<span size='13000' foreground='#B1E3AD'>{icon} </span> {time}",
-    "format-full": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
-    "format-icons": ["", "", "", "", ""],
-    "tooltip-format": "{time}",
-    "on-click": "hyprctl dispatch exec 'ghostty btop'"
-  },
+
   "network": {
-    "format-wifi": "<span size='13000' foreground='#f5e0dc'>  </span>{essid}",
-    "format-ethernet": "<span size='13000' foreground='#f5e0dc'>󰤭  </span> Disconnected",
-    "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "<span size='13000' foreground='#f5e0dc'>  </span>Disconnected",
-    "tooltip-format-wifi": "Signal Strenght: {signalStrength}%",
-    "on-click": "hyprctl dispatch exec 'nm-connection-editor'"
+    "format-wifi": "<span foreground='#f5e0dc'> </span> {essid}",
+    "format-ethernet": "<span foreground='#f5e0dc'>󰈀 </span> Wired",
+    "format-disconnected": "<span foreground='#f5e0dc'>󰤮 </span> Offline",
+    "on-click": "nm-connection-editor",
+    "tooltip-format": "{ifname} via {gwaddr}"
   },
+
   "pulseaudio": {
     "format": "{icon} {volume}%",
-    "format-muted": " Mutado",
-    "format-icons": [" ", " ", " "],
-    "tooltip": true,
-    "tooltip-format": "{device.description} | {volume}%",
+    "format-muted": "󰝟 Muted",
+    "format-icons": {
+      "default": ["", "", ""]
+    },
     "on-click": "pavucontrol",
     "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
     "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
   },
-  "keyboard": {
-    "format": "{icon}",
-    "format-icons": {
-      "br": "⌨ BR",
-      "us": "⌨ US"
-    },
-    "exec": "hyprctl getoption input:kb_layout | grep -oP 'str: \\K.*' | tr '[:lower:]' '[:upper:]'",
-    "exec-if": "exit 0",
-    "interval": "once",
-    "signal": 1,
-    "on-click": "bash ~/.config/hypr/switch-keyboard-layout.sh",
-    "tooltip": true,
-    "tooltip-format": "Layout: {} | Clique para alternar"
-  }
+
+  "battery": {
+    "states": { "warning": 30, "critical": 15 },
+    "format": "<span foreground='#a6e3a1'>{icon}</span> {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-icons": ["", "", "", "", ""]
+  },
+
+  "bluetooth": {
+  "format": "󰂯 {status}",
+  "format-connected": "󰂱 {device_alias}",
+  "format-connected-battery": "󰂱 {device_alias} {device_battery_percentage}%",
+  "format-off": "󰂲 BT off",
+  "on-click": "blueman-manager",
+  "tooltip-format": "{controller_alias}\n{num_connections} conectado(s)"
+},
+
+"custom/discord": {
+  "format": "󰙯",
+  "on-click": "discord",
+  "tooltip": true,
+  "tooltip-format": "Discord"
 }
+
+}
+
